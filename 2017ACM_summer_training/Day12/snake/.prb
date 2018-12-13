@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<problem type="TRA_0_4" maker="pcdialog">
+    <source dir="snake" file="snake" code="100">
+        <language cmd="fpc snake.pas" file="snake.pas"/>
+        <language cmd="g++ -o snake snake.cpp -lm" file="snake.cpp"/>
+        <language cmd="gcc -o snake snake.c -lm" file="snake.c"/>
+    </source>
+    <task output="snake.out" input="snake.in" io="0" checker="全文比较">
+        <subtask score="10">
+            <point in="snake1.in" out="snake1.out" time="1" mem="512"/>
+        </subtask>
+        <subtask score="10">
+            <point in="snake2.in" out="snake2.out" time="1" mem="512"/>
+        </subtask>
+        <subtask score="10">
+            <point in="snake3.in" out="snake3.out" time="1" mem="512"/>
+        </subtask>
+        <subtask score="10">
+            <point in="snake4.in" out="snake4.out" time="1" mem="512"/>
+        </subtask>
+        <subtask score="10">
+            <point in="snake5.in" out="snake5.out" time="1" mem="512"/>
+        </subtask>
+        <subtask score="10">
+            <point in="snake6.in" out="snake6.out" time="1" mem="512"/>
+        </subtask>
+        <subtask score="10">
+            <point in="snake7.in" out="snake7.out" time="1" mem="512"/>
+        </subtask>
+        <subtask score="10">
+            <point in="snake8.in" out="snake8.out" time="1" mem="512"/>
+        </subtask>
+        <subtask score="10">
+            <point in="snake9.in" out="snake9.out" time="1" mem="512"/>
+        </subtask>
+        <subtask score="10">
+            <point in="snake10.in" out="snake10.out" time="1" mem="512"/>
+        </subtask>
+    </task>
+</problem>
