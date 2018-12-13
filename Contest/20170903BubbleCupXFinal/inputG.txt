@@ -1,0 +1,23 @@
+4 3
+abc
+aec
+ac
+a
+?
+??
+a???c
+3 1
+abc
+aec
+ac
+a?c
+3 1
+abc
+aec
+ac
+a?c?
+3 1
+abc
+aec
+ac
+???
