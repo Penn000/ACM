@@ -2,67 +2,50 @@
 #include <cstring>
 #include <iostream>
 #include <algorithm>
+#include <vector>
 #define ll long long
 
 using namespace std;
 
-const int N = 10;
-
-struct Matrix{  
-	ll a[N][N];  
-	int r, c; 
-}ori, res;  
-
-void init(){  
-	memset(res.a, 0, sizeof(res.a));  
-	res.r = 2; res.c = 2;
-	for(int i = 1; i <= 2; i++)
-	  	res.a[i][i] = 1;
-	ori.r = 2; ori.c = 2;//构造矩阵
-	ori.a[1][1] = 1;
-	ori.a[1][2] = 1;
-	ori.a[2][1] = 1;  
-	ori.a[2][2] = 0;  
-}
-
-Matrix multi(Matrix x, Matrix y)//矩阵乘法
-{
-	Matrix z;
-	memset(z.a, 0, sizeof(z.a));  
-	z.r = x.r, z.c = y.c;
-	for(int i = 1; i <= x.r; i++){
-		for(int k = 1; k <= x.c; k++)//加速优化
-		{
-			if(x.a[i][k] == 0) continue;
-			for(int j = 1; j<= y.c; j++)
-			  z.a[i][j] = (z.a[i][j] + (x.a[i][k] * y.a[k][j]));
-
-		}
-
+string add(string s1, string s2) {
+	int len1 = s1.size(), len2 = s2.size();
+	vector<char> vec;
+	int c = 0;
+	for(int i = 0; i < max(len1, len2); i++) {
+		int a1, a2;
+		if(i >= len1) a1 = 0;
+		else a1 = s1[len1-i-1] - '0';
+		if(i >= len2) a2 = 0;
+		else a2 = s2[len2-i-1] - '0';
+		int tmp = c + a1 + a2;
+		vec.push_back(tmp % 10 + '0');
+		c = tmp / 10;
 	}
-	return z;
-
+	if(c) vec.push_back(c+'0');
+	string ans(vec.size(), '0');
+	for(int i = 0; i < vec.size(); i++) {
+		ans[i] = vec[vec.size()-i-1];
+	}
+	return ans;
 }
 
-void Matrix_pow(int n)//矩阵快速幂
-{  
-	while(n){  
-		if(n & 1)  
-		  res = multi(res, ori);  
-		ori = multi(ori, ori);  
-		n >>= 1;  
-	}  
-	printf("%llu\n", res.a[1][1]);  
-}  
+string F[1010];
+void init(){
+	F[1] = "1";
+	F[2] = "1";
+	for(int i = 3; i < 1005; i++) {
+		F[i] = add(F[i-1], F[i-2]);
+	}
+}
 
 int main()
 {
+	init();
 	int T, n;
-	scanf("%d", &T);
+	cin>>T;
 	while(T--){
-		scanf("%d", &n);
-		init();
-		Matrix_pow(n-1);
+		cin>>n;
+		cout<<F[n]<<endl;
 	}
 
 	return 0;
